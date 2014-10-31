@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'TouchIDAuth', :exclusive => true do
+  pod "TouchIDAuth", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "TouchIDAuth", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+end
