@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/auth0/TouchIDAuth"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Hernan Zalazar" => "hernanzalazar@gmail.com" }
+  s.author           = { "Hernan Zalazar" => "hernan@auth0.com" }
   s.source           = { :git => "https://github.com/auth0/TouchIDAuth.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/authzero'
 
