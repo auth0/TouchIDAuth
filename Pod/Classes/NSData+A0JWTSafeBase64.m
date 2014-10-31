@@ -1,4 +1,4 @@
-// A0ViewController.m
+// NSData+A0JWTSafeBase64.m
 //
 // Copyright (c) 2014 Auth0 (http://auth0.com)
 //
@@ -20,29 +20,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "A0ViewController.h"
+#import "NSData+A0JWTSafeBase64.h"
 
-#import <TouchIDAuth/A0TouchIDAuthentication.h>
+@implementation NSData (A0JWTSafeBase64)
 
-@interface A0ViewController ()
-@property (strong, nonatomic) A0TouchIDAuthentication *authentication;
-@end
+- (NSString *)a0_jwtSafeBase64String {
+    NSString *base64String = [self base64EncodedStringWithOptions:0];
+    base64String = [base64String stringByReplacingOccurrencesOfString:@"="
+                                                           withString:@""];
 
-@implementation A0ViewController
+    base64String = [base64String stringByReplacingOccurrencesOfString:@"/"
+                                                           withString:@"_"];
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.authentication = [[A0TouchIDAuthentication alloc] init];
-    self.authentication.registerPublicKey = ^(NSData *pubKey, A0RegisterCompletionBlock completionBlock, A0ErrorBlock errorBlock) {
-        completionBlock();
-    };
-    self.authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock) {
-        NSLog(@"JWT: %@", jwt);
-    };
-    self.authentication.onError = ^(NSError *error) {
-        NSLog(@"ERROR %@", error);
-    };
-    [self.authentication start];
+    base64String = [base64String stringByReplacingOccurrencesOfString:@"+"
+                                                           withString:@"-"];
+    return base64String;
 }
 
 @end

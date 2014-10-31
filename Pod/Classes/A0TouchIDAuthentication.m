@@ -22,12 +22,17 @@
 
 #import "A0TouchIDAuthentication.h"
 
+#import "NSData+A0JWTSafeBase64.h"
+
 #ifdef __IPHONE_8_0
 #import <LocalAuthentication/LocalAuthentication.h>
 #endif
 
 #import <libextobjc/EXTScope.h>
 #import <SimpleKeychain/A0SimpleKeychain+KeyPair.h>
+#import <CommonCrypto/CommonDigest.h>
+
+#define kHashLength CC_SHA256_DIGEST_LENGTH
 
 @interface A0TouchIDAuthentication ()
 @property (strong, nonatomic) A0SimpleKeychain *keychain;
@@ -45,7 +50,7 @@
 - (void)start {
     NSAssert(self.registerPublicKey != nil && self.authenticate, @"register pubkey and authenticate blocks must be non-nil");
     if ([A0TouchIDAuthentication isTouchIDAuthenticationAvailable]) {
-
+        [self performTouchIDChallenge];
     } else {
         [self safeFailWithError:[self touchIDNotAvailableError]];
     }
@@ -137,10 +142,82 @@
         @strongify(self);
         [self safeFailWithError:error];
     };
-    NSString *jwt;
+    NSDictionary *header = @{
+                             @"alg": @"RS256",
+                             @"typ": @"JWT",
+                             };
+    NSMutableDictionary *claims = [@{
+                                     @"device": [[UIDevice currentDevice] name],
+                                    } mutableCopy];
+    if (self.jwtPayload) {
+        [claims addEntriesFromDictionary:self.jwtPayload()];
+    }
+    NSString *headerBase64 = [[NSJSONSerialization dataWithJSONObject:header options:0 error:nil] a0_jwtSafeBase64String];
+    NSString *claimsBase64 = [[NSJSONSerialization dataWithJSONObject:claims options:0 error:nil] a0_jwtSafeBase64String];
+
+    NSString *jwtToSign = [[headerBase64 stringByAppendingString:@"."] stringByAppendingString:claimsBase64];
+    NSString *signatureBase64 = [[self signJWT:jwtToSign keyTag:[self privateKeyTag]] a0_jwtSafeBase64String];
+    NSString *jwt = [[jwtToSign stringByAppendingString:@"."] stringByAppendingString:signatureBase64];
+    NSLog(@"JWT: %@", jwt);
     if (self.authenticate) {
         self.authenticate(jwt, errorBlock);
     }
+}
+
+- (NSData *)signJWT:(NSString *)jwt keyTag:(NSString *)keyTag {
+    SecKeyRef privateKeyRef = [self privateKeyRefWithTag:keyTag];
+    NSData *signedHash;
+    if (privateKeyRef) {
+        size_t signatureSize = SecKeyGetBlockSize(privateKeyRef);
+        uint8_t *signatureBytes = malloc(signatureSize * sizeof(uint8_t));
+        memset(signatureBytes, 0x0, signatureSize);
+        NSData *hashedJWT = [self hashValue:jwt];
+        OSStatus status = SecKeyRawSign(privateKeyRef, kSecPaddingPKCS1SHA256, [hashedJWT bytes], kHashLength, signatureBytes, &signatureSize);
+        if (status == errSecSuccess) {
+            signedHash = [NSData dataWithBytes:signatureBytes length:signatureSize];
+        }
+        CFRelease(privateKeyRef);
+        if (signatureBytes) {
+            free(signatureBytes);
+        }
+    }
+    return signedHash;
+}
+
+- (SecKeyRef)privateKeyRefWithTag:(NSString *)tag {
+    NSDictionary *query = @{
+                            (__bridge id)kSecClass: (__bridge id)kSecClassKey,
+                            (__bridge id)kSecAttrKeyType: (__bridge id)kSecAttrKeyTypeRSA,
+                            (__bridge id)kSecReturnRef: @YES,
+                            (__bridge id)kSecAttrApplicationTag: tag,
+                            };
+    SecKeyRef privateKeyRef = NULL;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&privateKeyRef);
+    if (status != errSecSuccess) {
+        return NULL;
+    }
+    return privateKeyRef;
+}
+
+- (NSData *)hashValue:(NSString *)value {
+    CC_SHA256_CTX ctx;
+
+    uint8_t * hashBytes = malloc(CC_SHA256_DIGEST_LENGTH * sizeof(uint8_t));
+    memset(hashBytes, 0x0, CC_SHA256_DIGEST_LENGTH);
+
+    NSData *valueData = [value dataUsingEncoding:NSUTF8StringEncoding];
+
+    CC_SHA256_Init(&ctx);
+    CC_SHA256_Update(&ctx, [valueData bytes], (CC_LONG)[valueData length]);
+    CC_SHA256_Final(hashBytes, &ctx);
+
+    NSData *hash = [NSData dataWithBytes:hashBytes length:CC_SHA256_DIGEST_LENGTH];
+
+    if (hashBytes) {
+        free(hashBytes);
+    }
+
+    return hash;
 }
 
 #pragma mark - Error methods
