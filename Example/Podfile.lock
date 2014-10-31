@@ -58,6 +58,6 @@ SPEC CHECKSUMS:
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
   SimpleKeychain: 6e3b82ea55b1a5cb2be114fac9ec3976c8cfe687
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
-  TouchIDAuth: d8fa620b408341ac277dc5b24da93bf0ca50b8d7
+  TouchIDAuth: 2049730f8767e84c32eed2ee6a115f9a69224512
 
 COCOAPODS: 0.34.4

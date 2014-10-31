@@ -1,4 +1,4 @@
-// A0TouchIDAuthentication.h
+// A0TouchIDAuth.h
 //
 // Copyright (c) 2014 Auth0 (http://auth0.com)
 //

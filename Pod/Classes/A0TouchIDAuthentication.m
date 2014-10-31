@@ -22,13 +22,37 @@
 
 #import "A0TouchIDAuthentication.h"
 
+#ifdef __IPHONE_8_0
+
+#import <LocalAuthentication/LocalAuthentication.h>
+
+#endif
+
 @implementation A0TouchIDAuthentication
 
 - (void)start {
 }
 
 + (BOOL)isTouchIDAuthenticationAvailable {
+#if TARGET_IPHONE_SIMULATOR
+    return YES;
+#elif defined __IPHONE_8_0
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) { //iOS 8
+        LAContext *context = [[LAContext alloc] init];
+        NSError *error;
+        BOOL available = [context canEvaluatePolicy: LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error];
+        if (!available || error) {
+            NSLog(@"TouchID is not available for device. Error: %@", error);
+        }
+        return available;
+    } else { //iOS <= 7.1
+        NSLog(@"You need iOS 8 to use TouchID local authentication");
+        return NO;
+    }
+#else
+    NSLog(@"You need iOS 8 to use TouchID local authentication");
     return NO;
+#endif
 }
 
 @end
