@@ -1,12 +1,3 @@
-#
-# Be sure to run `pod lib lint TouchIDAuth.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "TouchIDAuth"
   s.version          = "0.1.0"
@@ -33,6 +24,8 @@ Pod::Spec.new do |s|
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'Security'
+  s.dependency 'SimpleKeychain', '~> 0.1'
+  s.dependency 'libextobjc', '~> 0.4'
+  s.dependency 'ObjectiveSugar', '~> 1.1'
 end

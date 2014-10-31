@@ -1,4 +1,4 @@
-// TouchIDAuthTests.m
+// A0TouchIdAuthenticationSpec.m
 //
 // Copyright (c) 2014 Auth0 (http://auth0.com)
 //
@@ -20,38 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-SpecBegin(InitialSpecs)
+#import "Specta.h"
+#import "A0TouchIDAuthentication.h"
 
-describe(@"these will fail", ^{
 
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
+SpecBegin(A0TouchIdAuthentication)
 
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
+describe(@"A0TouchIdAuthentication", ^{
     
-    it(@"will wait and fail", ^AsyncBlock {
-        
-    });
-});
-
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
-    });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^AsyncBlock {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            done();
-        });
-    });
 });
 
 SpecEnd
