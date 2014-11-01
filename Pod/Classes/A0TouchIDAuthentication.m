@@ -30,10 +30,8 @@
 
 #import <libextobjc/EXTScope.h>
 #import <SimpleKeychain/A0SimpleKeychain+KeyPair.h>
-#import <CommonCrypto/CommonDigest.h>
 #import "A0RSAKeyExporter.h"
-
-#define kHashLength CC_SHA256_DIGEST_LENGTH
+#import "A0JWTBuilder.h"
 
 @interface A0TouchIDAuthentication ()
 @property (strong, nonatomic) A0SimpleKeychain *keychain;
@@ -144,66 +142,22 @@
         @strongify(self);
         [self safeFailWithError:error];
     };
-    NSDictionary *header = @{
-                             @"alg": @"RS256",
-                             @"typ": @"JWT",
-                             };
+
     NSMutableDictionary *claims = [@{
                                      @"device": [[UIDevice currentDevice] name],
                                     } mutableCopy];
     if (self.jwtPayload) {
         [claims addEntriesFromDictionary:self.jwtPayload()];
     }
-    NSString *headerBase64 = [[NSJSONSerialization dataWithJSONObject:header options:0 error:nil] a0_jwtSafeBase64String];
-    NSString *claimsBase64 = [[NSJSONSerialization dataWithJSONObject:claims options:0 error:nil] a0_jwtSafeBase64String];
 
-    NSString *jwtToSign = [[headerBase64 stringByAppendingString:@"."] stringByAppendingString:claimsBase64];
-    NSString *signatureBase64 = [[self signJWT:jwtToSign keyTag:[self privateKeyTag]] a0_jwtSafeBase64String];
-    NSString *jwt = [[jwtToSign stringByAppendingString:@"."] stringByAppendingString:signatureBase64];
+    A0JWTBuilder *builder = [[A0JWTBuilder alloc] init];
+    SecKeyRef keyRef = [self.keychain keyRefOfRSAKeyWithTag:[self privateKeyTag]];
+    NSString *jwt = [[[builder setJWTPayload:claims] signWithMethod:A0JWTSignMethodRS256 andKeyOrSecret:(__bridge id)(keyRef)] jwt];
+    CFRelease(keyRef);
+
     if (self.authenticate) {
         self.authenticate(jwt, errorBlock);
     }
-}
-
-- (NSData *)signJWT:(NSString *)jwt keyTag:(NSString *)keyTag {
-    SecKeyRef privateKeyRef = [self.keychain keyRefOfRSAKeyWithTag:keyTag];
-    NSData *signedHash;
-    if (privateKeyRef) {
-        size_t signatureSize = SecKeyGetBlockSize(privateKeyRef);
-        uint8_t *signatureBytes = malloc(signatureSize * sizeof(uint8_t));
-        memset(signatureBytes, 0x0, signatureSize);
-        NSData *hashedJWT = [self hashValue:jwt];
-        OSStatus status = SecKeyRawSign(privateKeyRef, kSecPaddingPKCS1SHA256, [hashedJWT bytes], kHashLength, signatureBytes, &signatureSize);
-        if (status == errSecSuccess) {
-            signedHash = [NSData dataWithBytes:signatureBytes length:signatureSize];
-        }
-        CFRelease(privateKeyRef);
-        if (signatureBytes) {
-            free(signatureBytes);
-        }
-    }
-    return signedHash;
-}
-
-- (NSData *)hashValue:(NSString *)value {
-    CC_SHA256_CTX ctx;
-
-    uint8_t * hashBytes = malloc(CC_SHA256_DIGEST_LENGTH * sizeof(uint8_t));
-    memset(hashBytes, 0x0, CC_SHA256_DIGEST_LENGTH);
-
-    NSData *valueData = [value dataUsingEncoding:NSUTF8StringEncoding];
-
-    CC_SHA256_Init(&ctx);
-    CC_SHA256_Update(&ctx, [valueData bytes], (CC_LONG)[valueData length]);
-    CC_SHA256_Final(hashBytes, &ctx);
-
-    NSData *hash = [NSData dataWithBytes:hashBytes length:CC_SHA256_DIGEST_LENGTH];
-
-    if (hashBytes) {
-        free(hashBytes);
-    }
-
-    return hash;
 }
 
 #pragma mark - Error methods
