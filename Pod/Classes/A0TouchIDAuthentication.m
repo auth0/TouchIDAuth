@@ -31,6 +31,7 @@
 #import <libextobjc/EXTScope.h>
 #import <SimpleKeychain/A0SimpleKeychain+KeyPair.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "A0RSAKeyExporter.h"
 
 #define kHashLength CC_SHA256_DIGEST_LENGTH
 
@@ -119,7 +120,8 @@
         [self.keychain generateRSAKeyPairWithLength:A0SimpleKeychainRSAKeySize1024Bits
                                        publicKeyTag:publicTag
                                       privateKeyTag:privateTag];
-        NSData *publicKeyData = [self.keychain dataForRSAKeyWithTag:publicTag];
+        A0RSAKeyExporter *exporter = [[A0RSAKeyExporter alloc] init];
+        NSData *publicKeyData = [exporter exportPublicKey:[self.keychain dataForRSAKeyWithTag:publicTag]];
         if (self.registerPublicKey) {
             self.registerPublicKey(publicKeyData, completionBlock, errorBlock);
         }
