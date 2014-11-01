@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, A0TouchIDAuthenticationError) {
 @interface A0TouchIDAuthentication : NSObject
 
 /**
- *  Block to handle public key registration with an API Endpoint. It will receive 3 parameters: publicKey, completionBlock and errorBlock. The public key is in [SSH public key format](http://www.ietf.org/rfc/rfc4716.txt).
+ *  Block to handle public key registration with an API Endpoint. It will receive 3 parameters: publicKey, completionBlock and errorBlock. The public key is formatted as a RSA public key.
  */
 @property (copy, nonatomic) void(^registerPublicKey)(NSData *pubKey, A0RegisterCompletionBlock completionBlock, A0ErrorBlock errorBlock);
 

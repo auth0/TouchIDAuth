@@ -36,12 +36,12 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
   - ObjectiveSugar (1.1.0)
-  - SimpleKeychain (0.1.0)
+  - SimpleKeychain (0.2.0)
   - Specta (0.2.1)
   - TouchIDAuth (0.1.0):
     - libextobjc (~> 0.4)
     - ObjectiveSugar (~> 1.1)
-    - SimpleKeychain (~> 0.1)
+    - SimpleKeychain (~> 0.2)
 
 DEPENDENCIES:
   - Expecta
@@ -56,8 +56,8 @@ SPEC CHECKSUMS:
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
-  SimpleKeychain: 6e3b82ea55b1a5cb2be114fac9ec3976c8cfe687
+  SimpleKeychain: f7c55140169037f7540c949b25da53096036b231
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
-  TouchIDAuth: 2049730f8767e84c32eed2ee6a115f9a69224512
+  TouchIDAuth: 664bb22ed3d1eb1367f086cdf9696c9caf35cb82
 
 COCOAPODS: 0.34.4

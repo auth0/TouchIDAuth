@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Security', 'LocalAuthentication'
-  s.dependency 'SimpleKeychain', '~> 0.1'
+  s.dependency 'SimpleKeychain', '~> 0.2'
   s.dependency 'libextobjc', '~> 0.4'
   s.dependency 'ObjectiveSugar', '~> 1.1'
 end

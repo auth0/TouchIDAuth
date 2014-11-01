@@ -113,13 +113,13 @@
     NSString *publicTag = [self publicKeyTag];
     NSString *privateTag = [self privateKeyTag];
 
-    if ([self.keychain publicRSAKeyDataForTag:publicTag]) {
+    if ([self.keychain hasRSAKeyWithTag:publicTag]) {
         completionBlock();
     } else {
         [self.keychain generateRSAKeyPairWithLength:A0SimpleKeychainRSAKeySize1024Bits
                                        publicKeyTag:publicTag
                                       privateKeyTag:privateTag];
-        NSData *publicKeyData = [self.keychain publicRSAKeyDataForTag:publicTag];
+        NSData *publicKeyData = [self.keychain dataForRSAKeyWithTag:publicTag];
         if (self.registerPublicKey) {
             self.registerPublicKey(publicKeyData, completionBlock, errorBlock);
         }
@@ -158,14 +158,13 @@
     NSString *jwtToSign = [[headerBase64 stringByAppendingString:@"."] stringByAppendingString:claimsBase64];
     NSString *signatureBase64 = [[self signJWT:jwtToSign keyTag:[self privateKeyTag]] a0_jwtSafeBase64String];
     NSString *jwt = [[jwtToSign stringByAppendingString:@"."] stringByAppendingString:signatureBase64];
-    NSLog(@"JWT: %@", jwt);
     if (self.authenticate) {
         self.authenticate(jwt, errorBlock);
     }
 }
 
 - (NSData *)signJWT:(NSString *)jwt keyTag:(NSString *)keyTag {
-    SecKeyRef privateKeyRef = [self privateKeyRefWithTag:keyTag];
+    SecKeyRef privateKeyRef = [self.keychain keyRefOfRSAKeyWithTag:keyTag];
     NSData *signedHash;
     if (privateKeyRef) {
         size_t signatureSize = SecKeyGetBlockSize(privateKeyRef);
@@ -182,21 +181,6 @@
         }
     }
     return signedHash;
-}
-
-- (SecKeyRef)privateKeyRefWithTag:(NSString *)tag {
-    NSDictionary *query = @{
-                            (__bridge id)kSecClass: (__bridge id)kSecClassKey,
-                            (__bridge id)kSecAttrKeyType: (__bridge id)kSecAttrKeyTypeRSA,
-                            (__bridge id)kSecReturnRef: @YES,
-                            (__bridge id)kSecAttrApplicationTag: tag,
-                            };
-    SecKeyRef privateKeyRef = NULL;
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&privateKeyRef);
-    if (status != errSecSuccess) {
-        return NULL;
-    }
-    return privateKeyRef;
 }
 
 - (NSData *)hashValue:(NSString *)value {
