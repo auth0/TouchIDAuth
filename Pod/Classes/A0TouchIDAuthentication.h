@@ -84,4 +84,9 @@ typedef NS_ENUM(NSInteger, A0TouchIDAuthenticationError) {
  */
 - (BOOL)isTouchIDAuthenticationAvailable;
 
+/**
+ *  Reset TouchID authentication info stored in the device.
+ */
+- (void)reset;
+
 @end

@@ -40,6 +40,7 @@
 - (instancetype)init {
     if (self) {
         _keychain = [A0SimpleKeychain keychainWithService:@"TouchIDAuthentication"];
+        _touchID = [[A0TouchID alloc] init];
     }
     return self;
 }
@@ -55,6 +56,11 @@
 
 - (BOOL)isTouchIDAuthenticationAvailable {
     return self.touchID.isAvailable;
+}
+
+- (void)reset {
+    [self.keychain deleteRSAKeyWithTag:[self publicKeyTag]];
+    [self.keychain deleteRSAKeyWithTag:[self privateKeyTag]];
 }
 
 #pragma mark - Manage Key Pair
