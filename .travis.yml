@@ -2,7 +2,7 @@
 
 language: objective-c
 
-podfile: Examples/cocoapods-example/Podfile
+podfile: Example/Podfile
 
 before_install:
   - brew update
