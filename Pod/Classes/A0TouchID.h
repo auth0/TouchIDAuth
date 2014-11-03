@@ -1,4 +1,4 @@
-// A0JWTBuilder.h
+// A0TouchIDAvailability.h
 //
 // Copyright (c) 2014 Auth0 (http://auth0.com)
 //
@@ -23,44 +23,12 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  Types of Sign for a JWT
+ *  Checks for TouchID availability in the device
  */
-typedef NS_ENUM(NSUInteger, A0JWTSignMethod){
-    /**
-     *  RS256 (RSA with SHA256).
-     */
-    A0JWTSignMethodRS256 = 0,
-};
+@interface A0TouchID : NSObject
 
-/**
- *  Builder of JWT.
- */
-@interface A0JWTBuilder : NSObject
+@property (readonly, nonatomic, getter=isAvailable) BOOL available;
 
-/**
- *  Sets the JWT payload
- *
- *  @param payload new payload
- *
- *  @return the instance itself.
- */
-- (instancetype)setJWTPayload:(NSDictionary *)payload;
-
-/**
- *  Signs the current payload and generates the header accordingly. For the moment only RS256 is supported.
- *
- *  @param signMethod  sign method used.
- *  @param keyOrSecret key or secret
- *
- *  @return then instance itself.
- */
-- (instancetype)signWithMethod:(A0JWTSignMethod)signMethod andKeyOrSecret:(id)keyOrSecret;
-
-/**
- *  Returns the JWT. If it's not signed it will return nil.
- *
- *  @return the JWT or nil.
- */
-- (NSString *)jwt;
+- (void)validateWithCompletion:(void(^)(BOOL success, NSError *error))completionBlock;
 
 @end

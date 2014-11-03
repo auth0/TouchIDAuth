@@ -34,14 +34,14 @@ typedef NS_ENUM(NSInteger, A0TouchIDAuthenticationError) {
 
  It has the following steps:
 
- 1. KeyPair generation
- 2. Registration of Public Key
- 3. Generate and Sign JWT in the device
- 4. Authenticate user with generated JWT
+ 1. RSA KeyPair generation.
+ 2. Registration of Public Key.
+ 3. Generate and Sign JWT in the device.
+ 4. Authenticate user with generated JWT.
 
  The first two steps are only performed if no KeyPair is found in the iOS Keychain. And every time `A0TouchIDAuth` needs to access the KeyPair, it will validate if the user is the owner of the device using TouchID. The steps #2 and #4 must be implemented by developer using callbacks.
 
- There are three callbacks, `registerPublicKey`, `jwtPayload` and `authenticate` that  and login with a JWT against a API.
+ There are three callbacks, `registerPublicKey`, `jwtPayload` and `authenticate`.
 
  The callback `registerPublicKey` will handle the registration of the public key against an API and must call `completionBlock` on success in order to continue with the flow (or `errorBlock` if it fails).
 
@@ -82,6 +82,6 @@ typedef NS_ENUM(NSInteger, A0TouchIDAuthenticationError) {
  *
  *  @return if TouchID is available or not.
  */
-+ (BOOL)isTouchIDAuthenticationAvailable;
+- (BOOL)isTouchIDAuthenticationAvailable;
 
 @end

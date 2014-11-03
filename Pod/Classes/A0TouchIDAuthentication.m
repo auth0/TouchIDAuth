@@ -24,17 +24,15 @@
 
 #import "NSData+A0JWTSafeBase64.h"
 
-#ifdef __IPHONE_8_0
-#import <LocalAuthentication/LocalAuthentication.h>
-#endif
-
 #import <libextobjc/EXTScope.h>
 #import <SimpleKeychain/A0SimpleKeychain+KeyPair.h>
 #import "A0RSAKeyExporter.h"
 #import "A0JWTBuilder.h"
+#import "A0TouchID.h"
 
 @interface A0TouchIDAuthentication ()
 @property (strong, nonatomic) A0SimpleKeychain *keychain;
+@property (strong, nonatomic) A0TouchID *touchID;
 @end
 
 @implementation A0TouchIDAuthentication
@@ -48,54 +46,29 @@
 
 - (void)start {
     NSAssert(self.registerPublicKey != nil && self.authenticate, @"register pubkey and authenticate blocks must be non-nil");
-    if ([A0TouchIDAuthentication isTouchIDAuthenticationAvailable]) {
+    if ([self isTouchIDAuthenticationAvailable]) {
         [self performTouchIDChallenge];
     } else {
         [self safeFailWithError:[self touchIDNotAvailableError]];
     }
 }
 
-+ (BOOL)isTouchIDAuthenticationAvailable {
-#if TARGET_IPHONE_SIMULATOR
-    return YES;
-#elif defined __IPHONE_8_0
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) { //iOS 8
-        LAContext *context = [[LAContext alloc] init];
-        NSError *error;
-        BOOL available = [context canEvaluatePolicy: LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error];
-        if (!available || error) {
-            NSLog(@"TouchID is not available for device. Error: %@", error);
-        }
-        return available;
-    } else { //iOS <= 7.1
-        NSLog(@"You need iOS 8 to use TouchID local authentication");
-        return NO;
-    }
-#else
-    NSLog(@"You need iOS 8 to use TouchID local authentication");
-    return NO;
-#endif
+- (BOOL)isTouchIDAuthenticationAvailable {
+    return self.touchID.isAvailable;
 }
 
 #pragma mark - Manage Key Pair
 
 - (void)performTouchIDChallenge {
-#if TARGET_IPHONE_SIMULATOR
-    [self checkKeyPair];
-#else
     @weakify(self);
-    LAContext *context = [[LAContext alloc] init];
-    [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-            localizedReason:NSLocalizedString(nil, nil)
-                      reply:^(BOOL success, NSError *error) {
-                          @strongify(self);
-                          if (success) {
-                              [self checkKeyPair];
-                          } else {
-                              [self safeFailWithError:error];
-                          }
+    [self.touchID validateWithCompletion:^(BOOL success, NSError *error) {
+        @strongify(self);
+        if (success) {
+            [self checkKeyPair];
+        } else {
+            [self safeFailWithError:error];
+        }
     }];
-#endif
 }
 
 - (void)checkKeyPair {
