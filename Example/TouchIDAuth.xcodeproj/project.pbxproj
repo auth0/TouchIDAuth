@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5F38F1611A04298900B8580C /* A0TouchIdAuthenticationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F38F1601A04298900B8580C /* A0TouchIdAuthenticationSpec.m */; };
+		5F63404E1A080B3400FD08D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F63404D1A080B3400FD08D9 /* Main.storyboard */; };
+		5F6340511A081F6F00FD08D9 /* A0RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6340501A081F6F00FD08D9 /* A0RegisterViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* A0AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* A0AppDelegate.m */; };
-		6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F59F195388D20070C39A /* Main_iPhone.storyboard */; };
-		6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A2195388D20070C39A /* Main_iPad.storyboard */; };
 		6003F5A7195388D20070C39A /* A0ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* A0ViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
@@ -40,6 +40,9 @@
 		294EC2BFE4F5F6E04695A0C6 /* Pods-TouchIDAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchIDAuth.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchIDAuth/Pods-TouchIDAuth.release.xcconfig"; sourceTree = "<group>"; };
 		5CA62C53C202BDF00308CF6D /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F38F1601A04298900B8580C /* A0TouchIdAuthenticationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0TouchIdAuthenticationSpec.m; sourceTree = "<group>"; };
+		5F63404D1A080B3400FD08D9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5F63404F1A081F6F00FD08D9 /* A0RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0RegisterViewController.h; sourceTree = "<group>"; };
+		5F6340501A081F6F00FD08D9 /* A0RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0RegisterViewController.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* TouchIDAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchIDAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -50,8 +53,6 @@
 		6003F59B195388D20070C39A /* TouchIDAuth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TouchIDAuth-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* A0AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A0AppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* A0AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A0AppDelegate.m; sourceTree = "<group>"; };
-		6003F5A0195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		6003F5A3195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* A0ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A0ViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* A0ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A0ViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -134,12 +135,13 @@
 			children = (
 				6003F59C195388D20070C39A /* A0AppDelegate.h */,
 				6003F59D195388D20070C39A /* A0AppDelegate.m */,
-				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
-				6003F5A2195388D20070C39A /* Main_iPad.storyboard */,
 				6003F5A5195388D20070C39A /* A0ViewController.h */,
 				6003F5A6195388D20070C39A /* A0ViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				5F63404D1A080B3400FD08D9 /* Main.storyboard */,
+				5F63404F1A081F6F00FD08D9 /* A0RegisterViewController.h */,
+				5F6340501A081F6F00FD08D9 /* A0RegisterViewController.m */,
 			);
 			path = TouchIDAuth;
 			sourceTree = "<group>";
@@ -276,9 +278,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */,
+				5F63404E1A080B3400FD08D9 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +364,7 @@
 			files = (
 				6003F59E195388D20070C39A /* A0AppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* A0ViewController.m in Sources */,
+				5F6340511A081F6F00FD08D9 /* A0RegisterViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,22 +394,6 @@
 				6003F597195388D20070C39A /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		6003F59F195388D20070C39A /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6003F5A0195388D20070C39A /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		6003F5A2195388D20070C39A /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6003F5A3195388D20070C39A /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {

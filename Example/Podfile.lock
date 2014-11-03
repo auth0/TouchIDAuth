@@ -56,6 +56,7 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
+  - MBProgressHUD (0.9)
   - ObjectiveSugar (1.1.0)
   - OCHamcrest (4.0.1)
   - OCMockito (1.3.1):
@@ -70,6 +71,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.4)
   - Expecta
+  - MBProgressHUD (~> 0.8)
   - OCMockito (~> 1.3)
   - Specta (~> 0.2.1)
   - TouchIDAuth (from `../`)
@@ -82,6 +84,7 @@ SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
   OCHamcrest: b464725bbb48d0f1cd9c6f4ec3cb35fe0c4f2b94
   OCMockito: 57b8c4bb54ff3a4a14eb2174f9e57faf9f56efb6

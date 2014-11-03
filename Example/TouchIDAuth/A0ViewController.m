@@ -24,11 +24,20 @@
 
 #import <TouchIDAuth/A0TouchIDAuthentication.h>
 #import <AFNetworking/AFNetworking.h>
+#import <libextobjc/EXTScope.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+
+#import "A0RegisterViewController.h"
 
 #define kBaseURL @"http://localhost:3000"
 
 @interface A0ViewController ()
 @property (strong, nonatomic) A0TouchIDAuthentication *authentication;
+
+@property (copy, nonatomic) void(^completionBlock)(NSString *email);
+
+- (IBAction)startAuthentication:(id)sender;
+- (IBAction)userRegistered:(UIStoryboardSegue *)segue;
 @end
 
 @implementation A0ViewController
@@ -42,33 +51,60 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [self.authentication reset];
+    @weakify(self);
     self.authentication.registerPublicKey = ^(NSData *pubKey, A0RegisterCompletionBlock completionBlock, A0ErrorBlock errorBlock) {
-        NSDictionary *params = @{
-                                 @"user": @"mail@mail.com",
-                                 @"key": [pubKey base64EncodedStringWithOptions:0],
-                                 };
-        [manager POST:@"/pubkey" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            completionBlock();
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            errorBlock(error);
-        }];
+        @strongify(self);
+        self.completionBlock = ^(NSString *email) {
+            @strongify(self);
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = NSLocalizedString(@"Registering Public Key...", nil);
+            NSDictionary *params = @{
+                                     @"user": email,
+                                     @"key": [pubKey base64EncodedStringWithOptions:0],
+                                     };
+            [manager POST:@"/pubkey" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                completionBlock();
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                errorBlock(error);
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            }];
+        };
+        [self performSegueWithIdentifier:@"StartRegister" sender:self];
     };
 
     self.authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock) {
+        @strongify(self);
         NSLog(@"JWT: %@", jwt);
         NSDictionary *params = @{
                                  @"jwt": jwt,
                                  };
+        MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+        hud.labelText = NSLocalizedString(@"Login in with JWT...", nil);
         [manager POST:@"/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Logged in!!!");
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self performSegueWithIdentifier:@"Authenticated" sender:self];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             errorBlock(error);
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     };
     self.authentication.onError = ^(NSError *error) {
+        @strongify(self);
         NSLog(@"ERROR %@", error);
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     };
+}
+
+- (void)startAuthentication:(id)sender {
     [self.authentication start];
 }
 
+- (void)userRegistered:(UIStoryboardSegue *)segue {
+    A0RegisterViewController *controller = segue.sourceViewController;
+    if (self.completionBlock) {
+        self.completionBlock(controller.emailField.text);
+        self.completionBlock = nil;
+    }
+}
 @end
