@@ -23,6 +23,9 @@
 #import "A0ViewController.h"
 
 #import <TouchIDAuth/A0TouchIDAuthentication.h>
+#import <AFNetworking/AFNetworking.h>
+
+#define kBaseURL @"http://localhost:3000"
 
 @interface A0ViewController ()
 @property (strong, nonatomic) A0TouchIDAuthentication *authentication;
@@ -33,11 +36,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.authentication = [[A0TouchIDAuthentication alloc] init];
+    [self.authentication reset];
+    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [self.authentication reset];
     self.authentication.registerPublicKey = ^(NSData *pubKey, A0RegisterCompletionBlock completionBlock, A0ErrorBlock errorBlock) {
-        completionBlock();
+        NSDictionary *params = @{
+                                 @"user": @"mail@mail.com",
+                                 @"key": [pubKey base64EncodedStringWithOptions:0],
+                                 };
+        [manager POST:@"/pubkey" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            completionBlock();
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            errorBlock(error);
+        }];
     };
+
     self.authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock) {
         NSLog(@"JWT: %@", jwt);
+        NSDictionary *params = @{
+                                 @"jwt": jwt,
+                                 };
+        [manager POST:@"/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Logged in!!!");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            errorBlock(error);
+        }];
     };
     self.authentication.onError = ^(NSError *error) {
         NSLog(@"ERROR %@", error);
