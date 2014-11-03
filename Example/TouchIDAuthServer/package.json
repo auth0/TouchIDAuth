@@ -1,0 +1,17 @@
+{
+  "name": "TouchIDAuthServer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Auth0",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.1",
+    "jsonwebtoken": "^1.1.2",
+    "node-uuid": "^1.4.1"
+  }
+}

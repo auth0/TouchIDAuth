@@ -24,3 +24,6 @@ DerivedData
 
 # CocoaPods
 Pods/
+
+#NodeJS
+node_modules
