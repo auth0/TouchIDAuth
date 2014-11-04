@@ -28,5 +28,6 @@
 @interface A0RSAKeyExporter : NSObject
 
 - (NSData *)exportPublicKey:(NSData *)keyData;
+- (NSString *)fingerprintOfKey:(NSData *)keyData;
 
 @end

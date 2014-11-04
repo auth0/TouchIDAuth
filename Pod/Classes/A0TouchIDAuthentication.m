@@ -30,9 +30,12 @@
 #import "A0JWTBuilder.h"
 #import "A0TouchID.h"
 
+#define kJWTTimeToLive 30
+
 @interface A0TouchIDAuthentication ()
 @property (strong, nonatomic) A0SimpleKeychain *keychain;
 @property (strong, nonatomic) A0TouchID *touchID;
+@property (strong, nonatomic) A0RSAKeyExporter *exporter;
 @end
 
 @implementation A0TouchIDAuthentication
@@ -41,6 +44,7 @@
     if (self) {
         _keychain = [A0SimpleKeychain keychainWithService:@"TouchIDAuthentication"];
         _touchID = [[A0TouchID alloc] init];
+        _exporter = [[A0RSAKeyExporter alloc] init];
     }
     return self;
 }
@@ -97,8 +101,7 @@
         [self.keychain generateRSAKeyPairWithLength:A0SimpleKeychainRSAKeySize1024Bits
                                        publicKeyTag:publicTag
                                       privateKeyTag:privateTag];
-        A0RSAKeyExporter *exporter = [[A0RSAKeyExporter alloc] init];
-        NSData *publicKeyData = [exporter exportPublicKey:[self.keychain dataForRSAKeyWithTag:publicTag]];
+        NSData *publicKeyData = [self.exporter exportPublicKey:[self.keychain dataForRSAKeyWithTag:publicTag]];
         if (self.registerPublicKey) {
             self.registerPublicKey(publicKeyData, completionBlock, errorBlock);
         }
@@ -122,8 +125,14 @@
         [self safeFailWithError:error];
     };
 
+    NSString *publicTag = [self publicKeyTag];
+    long expiration = [[NSDate dateWithTimeIntervalSinceNow:kJWTTimeToLive] timeIntervalSince1970];
+    long issuedAt = [[NSDate date] timeIntervalSince1970];
     NSMutableDictionary *claims = [@{
+                                     @"sub": [self.exporter fingerprintOfKey:[self.keychain dataForRSAKeyWithTag:publicTag]],
                                      @"device": [[UIDevice currentDevice] name],
+                                     @"exp": @(expiration),
+                                     @"iat": @(issuedAt),
                                     } mutableCopy];
     if (self.jwtPayload) {
         [claims addEntriesFromDictionary:self.jwtPayload()];
