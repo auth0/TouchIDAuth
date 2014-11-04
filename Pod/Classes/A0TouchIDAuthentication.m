@@ -32,6 +32,8 @@
 
 #define kJWTTimeToLive 30
 
+NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErrorKey";
+
 @interface A0TouchIDAuthentication ()
 @property (strong, nonatomic) A0SimpleKeychain *keychain;
 @property (strong, nonatomic) A0TouchID *touchID;
@@ -76,7 +78,7 @@
         if (success) {
             [self checkKeyPair];
         } else {
-            [self safeFailWithError:error];
+            [self safeFailWithError:[self touchIDFailedWithError:error]];
         }
     }];
 }
@@ -156,6 +158,21 @@
                                             userInfo:@{
                                                        NSLocalizedDescriptionKey: NSLocalizedString(@"TouchID is not configured or supported in the device", @"TouchID not available"),
                                                        }];
+    return error;
+}
+
+- (NSError *)touchIDFailedWithError:(NSError *)failError {
+    NSMutableDictionary *userInfo = [@{
+                                      NSLocalizedDescriptionKey: NSLocalizedString(@"Failed to authenticate using TouchID", @"User  failed to authenticate"),
+                                      NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"TouchID verification failed. Please try again.", @"TouchID verification failed"),
+                                      } mutableCopy];
+    if (failError) {
+        userInfo[A0TouchIDAuthenticationErrorKey] = failError;
+
+    }
+    NSError *error = [[NSError alloc] initWithDomain:@"com.auth0.TouchIDAuthentication"
+                                                code:A0TouchIDAuthenticationErrorTouchIDFailed
+                                            userInfo:userInfo];
     return error;
 }
 

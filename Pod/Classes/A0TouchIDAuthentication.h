@@ -27,7 +27,10 @@ typedef void(^A0ErrorBlock)(NSError *error);
 
 typedef NS_ENUM(NSInteger, A0TouchIDAuthenticationError) {
     A0TouchIDAuthenticationErrorTouchIDNotAvailable = -1,
+    A0TouchIDAuthenticationErrorTouchIDFailed,
 };
+
+FOUNDATION_EXPORT NSString * const A0TouchIDAuthenticationErrorKey;
 
 /**
  `A0TouchIDAuth` performs a passwordless authentication using `JWT` and *Apple's TouchID*.
