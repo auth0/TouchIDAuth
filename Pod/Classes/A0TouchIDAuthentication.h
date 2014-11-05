@@ -74,6 +74,10 @@ FOUNDATION_EXPORT NSString * const A0TouchIDAuthenticationErrorKey;
  */
 @property (copy, nonatomic) void(^onError)(NSError *error);
 
+/**
+ * Localized message displayed in TouchID prompt.
+ */
+@property (copy, nonatomic) NSString *localizedTouchIDMessage;
 
 /**
  *  Starts the TouchID authentication flow. It will fail automatically if `isTouchIDAuthenticationAvailable` returns `NO`.

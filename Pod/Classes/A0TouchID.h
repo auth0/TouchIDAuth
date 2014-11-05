@@ -29,6 +29,19 @@
 
 @property (readonly, nonatomic, getter=isAvailable) BOOL available;
 
+/**
+ *  Validates the user presence with TouchID.
+ *
+ *  @param completionBlock block called when evaluation is completed
+ */
 - (void)validateWithCompletion:(void(^)(BOOL success, NSError *error))completionBlock;
+
+/**
+ *  Validates the user presence with TouchID.
+ *
+ *  @param completionBlock block called when evaluation is completed
+ *  @param reason          localized reason displayed in TouchID prompt.
+ */
+- (void)validateWithCompletion:(void(^)(BOOL success, NSError *error))completionBlock localizedReason:(NSString *)reason;
 
 @end

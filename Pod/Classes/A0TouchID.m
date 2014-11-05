@@ -50,7 +50,8 @@
 #endif
 }
 
-- (void)validateWithCompletion:(void (^)(BOOL, NSError *))completionBlock {
+- (void)validateWithCompletion:(void (^)(BOOL, NSError *))completionBlock
+               localizedReason:(NSString *)localizedReason {
 #if TARGET_IPHONE_SIMULATOR
     if (completionBlock) {
         completionBlock(YES, nil);
@@ -58,8 +59,13 @@
 #else
     LAContext *context = [[LAContext alloc] init];
     [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-            localizedReason:NSLocalizedString(nil, nil)
+            localizedReason:localizedReason ?: NSLocalizedString(@"Please authenticate to continue...", @"Default reason")
                       reply:completionBlock];
 #endif
+}
+
+- (void)validateWithCompletion:(void (^)(BOOL, NSError *))completionBlock {
+    [self validateWithCompletion:completionBlock
+                 localizedReason:nil];
 }
 @end

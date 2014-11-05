@@ -80,7 +80,7 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
         } else {
             [self safeFailWithError:[self touchIDFailedWithError:error]];
         }
-    }];
+    } localizedReason:self.localizedTouchIDMessage];
 }
 
 - (void)checkKeyPair {
