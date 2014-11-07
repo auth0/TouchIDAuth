@@ -60,7 +60,7 @@ FOUNDATION_EXPORT NSString * const A0TouchIDAuthenticationErrorKey;
 @property (copy, nonatomic) void(^registerPublicKey)(NSData *pubKey, A0RegisterCompletionBlock completionBlock, A0ErrorBlock errorBlock);
 
 /**
- *  Block to return the paylod for the JWT to be signed by the device. It will be called each time a JWT needs to be generated and signed. By default `A0TouchIDAuth` will include `iat`, `exp` (30 sec) and `sub` (Public Key fingerprint) claims but you can override them.
+ *  Block to return the paylod for the JWT to be signed by the device. It will be called each time a JWT needs to be generated and signed. By default `A0TouchIDAuth` will include `iat`, `exp` (30 sec) and `sub` (Public Key fingerprint) claims but you can override them or add more entries to the payload.
  */
 @property (copy, nonatomic) NSDictionary *(^jwtPayload)();
 
