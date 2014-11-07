@@ -23,16 +23,27 @@
 #import "Specta.h"
 #import "A0TouchIDAuthentication.h"
 #import "A0TouchID.h"
-#import "A0SimpleKeychain.h"
+
+#import <UIKit/UIKit.h>
+#import <JWTDecode/A0JWTDecoder.h>
 
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
 
+#define kCustomSubject @"A SUBJECT"
+#define kCustomIssuer @"A ISSUER"
+#define kCustomValue @"custom_value"
+
 @interface A0TouchIDAuthentication (Testing)
-@property (strong, nonatomic) A0SimpleKeychain *keychain;
 @property (strong, nonatomic) A0TouchID *touchID;
+
+//Not the best way to test it but it's cleaner that handling block stubs
+//TODO: Refactor in step objetcs to mock (maybe NSOperation).
+- (void)checkKeyPair;
+- (void)generateJWT;
+
 @end
 
 SpecBegin(A0TouchIdAuthentication)
@@ -41,24 +52,34 @@ describe(@"A0TouchIdAuthentication", ^{
 
     __block A0TouchIDAuthentication *authentication;
     __block A0TouchID *touchID;
-    __block A0SimpleKeychain *keychain;
 
     beforeEach(^{
         authentication = [[A0TouchIDAuthentication alloc] init];
         touchID = mock(A0TouchID.class);
-        keychain = mock(A0SimpleKeychain.class);
         authentication.touchID = touchID;
-        authentication.keychain = keychain;
         [given(touchID.isAvailable) willReturnBool:YES];
     });
 
-    describe(@"Starting flow", ^{
+    describe(@"Auth Flow", ^{
+
+        __block NSData *generatedKey;
+        __block NSString *signedJWT;
+        __block NSDictionary *payload;
 
         beforeEach(^{
             authentication.registerPublicKey = ^(NSData *pubKey, A0RegisterCompletionBlock completion, A0ErrorBlock errorBlock){
+                generatedKey = pubKey;
+                completion();
             };
             authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock){
+                signedJWT = jwt;
             };
+            generatedKey = nil;
+            signedJWT = nil;
+        });
+
+        afterEach(^{
+            [authentication reset];
         });
 
         it(@"should fail when no callback is set", ^{
@@ -117,6 +138,109 @@ describe(@"A0TouchIdAuthentication", ^{
                 expect(failed).will.beTruthy();
             });
         });
+
+        context(@"Existing Key Pair", ^{
+
+            beforeAll(^{
+                [authentication checkKeyPair];
+                generatedKey = nil;
+            });
+
+            it(@"should not call register key block", ^{
+                [authentication checkKeyPair];
+                expect(generatedKey).will.beNil();
+            });
+
+        });
+
+        context(@"Generates Key Pair", ^{
+
+            it(@"should call register key block with public key", ^{
+                [authentication checkKeyPair];
+                expect(generatedKey).willNot.beNil();
+            });
+            
+        });
+
+        sharedExamplesFor(@"valid JWT", ^(NSDictionary *data) {
+
+            it(@"non-nil JWT", ^{
+                expect(signedJWT).notTo.beNil();
+            });
+
+            it(@"includes sub claim", ^{
+                expect(payload[@"sub"]).notTo.beNil();
+            });
+
+            it(@"includes iat claim", ^{
+                expect(payload[@"iat"]).to.beGreaterThan(0);
+            });
+
+            it(@"includes exp claim", ^{
+                expect(payload[@"exp"]).to.beGreaterThan(0);
+            });
+
+            it(@"exp claim is around 30 seconds from iat", ^{
+                NSTimeInterval iat = [payload[@"iat"] doubleValue];
+                NSTimeInterval exp = [payload[@"exp"] doubleValue];
+                expect(exp - iat).to.beCloseToWithin(30, 0.1);
+            });
+
+            it(@"includes device", ^{
+                expect(payload[@"device"]).to.equal([[UIDevice currentDevice] name]);
+            });
+        });
+
+        context(@"JWT default payload", ^{
+
+            beforeEach(^{
+                authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock){
+                    signedJWT = jwt;
+                    payload = [A0JWTDecoder payloadOfJWT:jwt error:nil];
+                };
+                payload = nil;
+                [authentication checkKeyPair];
+            });
+
+            itBehavesLike(@"valid JWT", nil);
+        });
+
+        context(@"JWT custom payload", ^{
+
+            __block NSDictionary *payload;
+
+            beforeEach(^{
+                authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock){
+                    signedJWT = jwt;
+                    payload = [A0JWTDecoder payloadOfJWT:jwt error:nil];
+                };
+                authentication.jwtPayload = ^{
+                    return @{
+                             @"sub": kCustomSubject,
+                             @"iss": kCustomIssuer,
+                             @"custom": kCustomValue,
+                             };
+                };
+                payload = nil;
+                [authentication checkKeyPair];
+            });
+
+            itBehavesLike(@"valid JWT", nil);
+
+            it(@"overrides sub claim", ^{
+                expect(payload[@"sub"]).will.equal(kCustomSubject);
+            });
+
+            it(@"includes iss claim", ^{
+                expect(payload[@"iss"]).will.equal(kCustomIssuer);
+            });
+
+            it(@"includes custom key", ^{
+                expect(payload[@"custom"]).will.equal(kCustomValue);
+            });
+
+        });
+
     });
 });
 

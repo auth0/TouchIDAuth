@@ -27,13 +27,17 @@
 @implementation A0RSAKeyExporter
 
 - (NSData *)exportPublicKey:(NSData *)keyData {
-    NSMutableString *rsaKey = [[NSMutableString alloc] init];
-    [rsaKey appendString:@"-----BEGIN RSA PUBLIC KEY-----"];
-    [rsaKey appendString:@"\n"];
-    [rsaKey appendString:[keyData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength|NSDataBase64EncodingEndLineWithCarriageReturn]];
-    [rsaKey appendString:@"\n"];
-    [rsaKey appendString:@"-----END RSA PUBLIC KEY-----"];
-    return [rsaKey dataUsingEncoding:NSUTF8StringEncoding];
+    if (keyData) {
+        NSMutableString *rsaKey = [[NSMutableString alloc] init];
+        [rsaKey appendString:@"-----BEGIN RSA PUBLIC KEY-----"];
+        [rsaKey appendString:@"\n"];
+        [rsaKey appendString:[keyData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength|NSDataBase64EncodingEndLineWithCarriageReturn]];
+        [rsaKey appendString:@"\n"];
+        [rsaKey appendString:@"-----END RSA PUBLIC KEY-----"];
+        return [rsaKey dataUsingEncoding:NSUTF8StringEncoding];
+    } else {
+        return nil;
+    }
 }
 
 - (NSString *)fingerprintOfKey:(NSData *)keyData {

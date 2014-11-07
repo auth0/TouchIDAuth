@@ -9,6 +9,8 @@ end
 target 'Tests', :exclusive => true do
   pod "TouchIDAuth", :path => "../"
 
+  pod "JWTDecode"
+
   pod 'Specta', '~> 0.2.1', :inhibit_warnings => true
   pod 'Expecta', :inhibit_warnings => true
   pod 'OCMockito', '~> 1.3'

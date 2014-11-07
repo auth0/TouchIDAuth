@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F38F1611A04298900B8580C /* A0TouchIdAuthenticationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F38F1601A04298900B8580C /* A0TouchIdAuthenticationSpec.m */; };
+		5F3A9C591A0D6CCE00154DF2 /* NSDataBase64Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3A9C581A0D6CCE00154DF2 /* NSDataBase64Spec.m */; };
+		5F3A9C5B1A0D731E00154DF2 /* A0RSAKeyExporterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3A9C5A1A0D731E00154DF2 /* A0RSAKeyExporterSpec.m */; };
 		5F63404E1A080B3400FD08D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F63404D1A080B3400FD08D9 /* Main.storyboard */; };
 		5F6340511A081F6F00FD08D9 /* A0RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6340501A081F6F00FD08D9 /* A0RegisterViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -40,6 +42,8 @@
 		294EC2BFE4F5F6E04695A0C6 /* Pods-TouchIDAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchIDAuth.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchIDAuth/Pods-TouchIDAuth.release.xcconfig"; sourceTree = "<group>"; };
 		5CA62C53C202BDF00308CF6D /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F38F1601A04298900B8580C /* A0TouchIdAuthenticationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0TouchIdAuthenticationSpec.m; sourceTree = "<group>"; };
+		5F3A9C581A0D6CCE00154DF2 /* NSDataBase64Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataBase64Spec.m; sourceTree = "<group>"; };
+		5F3A9C5A1A0D731E00154DF2 /* A0RSAKeyExporterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0RSAKeyExporterSpec.m; sourceTree = "<group>"; };
 		5F63404D1A080B3400FD08D9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5F63404F1A081F6F00FD08D9 /* A0RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0RegisterViewController.h; sourceTree = "<group>"; };
 		5F6340501A081F6F00FD08D9 /* A0RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0RegisterViewController.m; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 			children = (
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				5F38F1601A04298900B8580C /* A0TouchIdAuthenticationSpec.m */,
+				5F3A9C581A0D6CCE00154DF2 /* NSDataBase64Spec.m */,
+				5F3A9C5A1A0D731E00154DF2 /* A0RSAKeyExporterSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -373,6 +379,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3A9C591A0D6CCE00154DF2 /* NSDataBase64Spec.m in Sources */,
+				5F3A9C5B1A0D731E00154DF2 /* A0RSAKeyExporterSpec.m in Sources */,
 				5F38F1611A04298900B8580C /* A0TouchIdAuthenticationSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

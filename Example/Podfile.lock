@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Expecta (0.3.1)
+  - JWTDecode (0.2.1)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT
     - libextobjc/EXTConcreteProtocol
@@ -71,6 +72,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.4)
   - Expecta
+  - JWTDecode
   - MBProgressHUD (~> 0.8)
   - OCMockito (~> 1.3)
   - Specta (~> 0.2.1)
@@ -83,6 +85,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  JWTDecode: 72e3393caf14dc762eba51d29f15bd86f608aba3
   libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2

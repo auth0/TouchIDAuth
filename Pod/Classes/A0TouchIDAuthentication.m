@@ -69,7 +69,7 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
     [self.keychain deleteRSAKeyWithTag:[self privateKeyTag]];
 }
 
-#pragma mark - Manage Key Pair
+#pragma mark - TouchID step
 
 - (void)performTouchIDChallenge {
     @weakify(self);
@@ -82,6 +82,8 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
         }
     } localizedReason:self.localizedTouchIDMessage];
 }
+
+#pragma mark - Key Pair generation step
 
 - (void)checkKeyPair {
     @weakify(self);
@@ -118,7 +120,7 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
     return [[[NSBundle mainBundle] bundleIdentifier] stringByAppendingString:@".key"];
 }
 
-#pragma mark - JWT
+#pragma mark - JWT step
 
 - (void)generateJWT {
     @weakify(self);
