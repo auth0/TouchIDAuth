@@ -105,13 +105,13 @@ describe(@"A0TouchIdAuthentication", ^{
 
             it(@"should validate with TouchID", ^{
                 [authentication start];
-                [MKTVerify(touchID) validateWithCompletion:anything()];
+                [MKTVerify(touchID) validateWithCompletion:anything() localizedReason:anything()];
             });
 
             it(@"should fail when TouchID validation isnt successful", ^{
                 MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
                 [authentication start];
-                [MKTVerify(touchID) validateWithCompletion:[captor capture]];
+                [MKTVerify(touchID) validateWithCompletion:[captor capture] localizedReason:anything()];
                 void (^touchBlock)(BOOL, NSError *) = captor.value;
                 touchBlock(NO, nil);
                 expect(failed).will.beTruthy();

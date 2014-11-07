@@ -22,9 +22,12 @@
 
 #import "A0TouchID.h"
 
+#import <SimpleKeychain/A0SimpleKeychain.h>
 #ifdef __IPHONE_8_0
 #import <LocalAuthentication/LocalAuthentication.h>
 #endif
+
+#define kTouchIDEntryKey @"auth0-touchid-flag"
 
 @implementation A0TouchID
 
@@ -57,10 +60,16 @@
         completionBlock(YES, nil);
     }
 #else
-    LAContext *context = [[LAContext alloc] init];
-    [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-            localizedReason:localizedReason ?: NSLocalizedString(@"Please authenticate to continue...", @"Default reason")
-                      reply:completionBlock];
+    A0SimpleKeychain *keychain = [A0SimpleKeychain keychainWithService:@"TouchID"];
+    keychain.useAccessControl = YES;
+    keychain.defaultAccessiblity = A0SimpleKeychainItemAccessibleWhenUnlockedThisDeviceOnly;
+    NSString *message = localizedReason ?: NSLocalizedString(@"Please authenticate to continue...", @"Default reason");
+    [keychain deleteEntryForKey:kTouchIDEntryKey];
+    [keychain setString:[[NSBundle mainBundle] bundleIdentifier] forKey:kTouchIDEntryKey promptMessage:message];
+    BOOL success = [keychain stringForKey:kTouchIDEntryKey promptMessage:message] != nil;
+    if (completionBlock) {
+        completionBlock(success, nil);
+    }
 #endif
 }
 
