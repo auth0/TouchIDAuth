@@ -1,18 +1,19 @@
-# reference: http://www.objc.io/issue-6/travis-ci.html
-
 language: objective-c
 
 podfile: Example/Podfile
 
 before_install:
-  - brew update
-  - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
-  - gem install cocoapods --no-ri --no-rdoc
+- brew update
+- if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
+- gem install cocoapods --no-ri --no-rdoc
 
 script:
-  - xctool -workspace Example/TouchIDAuth.xcworkspace -scheme TouchIDAuth -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO clean test
+- xctool -workspace Example/TouchIDAuth.xcworkspace -scheme TouchIDAuth -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO clean test
 
 branches:
   only:
-    - master
+  - master
 
+notifications:
+  slack:
+    secure: FYTAD2dSWOSaIV9f2c+3RmX5ib+aJuTioNAq+RGK3S9dbmBgRDuPainIbtZX5uDBWkTHDaVe6ydELB+HLkt8zccGjU9Rc8n1HQqn86QjGQXFxnCILMrUQu0utzHgXGy6XDCVkO6pCGHPw0GCes2KUZ7JyohJz2tx1aOLxI0DC4E=
