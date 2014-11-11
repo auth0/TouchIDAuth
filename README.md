@@ -18,6 +18,32 @@ The flow is represented in the following graph:
 1. Generate a JWT and signs it with the Private Key using **RS256**
 1. Authenticate the user with the signed JWT.
 
+## Requirements
+
+The library requires iOS 8+ and a device with TouchID.
+
+## Installation
+
+TouchIDAuth is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+    pod "TouchIDAuth"
+
+## Running Example app
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+And then in [A0ViewController](https://github.com/auth0/TouchIDAuth/blob/master/Example/TouchIDAuth/A0ViewController.m#L32) add your IP address or hostname for the mock server URL:
+
+```objc
+#define kBaseURL @"http://mymac.local:3000"
+```
+
+To run the mock server, go to the folder [TouchIDAuthServer](https://github.com/auth0/TouchIDAuth/tree/master/Example/TouchIDAuthServer) and run the following commands:
+```bash
+npm install
+node app.js
+```
+
 ## Usage
 
 First you'll need to instantiate it
@@ -80,32 +106,6 @@ At last, call the following method to start the authentication flow:
 [authentication start];
 ```
 > Before calling `start`, it's recommended to check if **TouchID** is enabled in the device calling the method [isTouchIDAuthenticationAvailable](#a0touchidauthenticationistouchidauthenticationavailable).
-
-## Running Example app
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-And then in [A0ViewController](https://github.com/auth0/TouchIDAuth/blob/master/Example/TouchIDAuth/A0ViewController.m#L32) add your IP address or hostname for the mock server URL:
-
-```objc
-#define kBaseURL @"http://mymac.local:3000"
-```
-
-To run the mock server, go to the folder [TouchIDAuthServer](https://github.com/auth0/TouchIDAuth/tree/master/Example/TouchIDAuthServer) and run the following commands:
-```bash
-npm install
-node app.js
-```
-
-## Requirements
-
-The library requires iOS 8+ and a device with TouchID.
-
-## Installation
-
-TouchIDAuth is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-    pod "TouchIDAuth"
 
 ##API
 
