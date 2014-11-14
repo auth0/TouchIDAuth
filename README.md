@@ -18,6 +18,8 @@ The flow is represented in the following graph:
 1. Generate a JWT and signs it with the Private Key using **RS256**
 1. Authenticate the user with the signed JWT.
 
+![TouchID demo](https://cloudup.com/cyDR07xBX3j+)
+
 ## Requirements
 
 The library requires iOS 8+ and a device with TouchID.
