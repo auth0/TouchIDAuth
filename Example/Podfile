@@ -2,8 +2,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'TouchIDAuth', :exclusive => true do
   pod "TouchIDAuth", :path => "../"
-  pod 'AFNetworking', '~> 2.4'
-  pod 'MBProgressHUD', '~> 0.8'
+  pod 'AFNetworking', '~> 2.5'
+  pod 'MBProgressHUD', '~> 0.9'
 end
 
 target 'Tests', :exclusive => true do
@@ -11,7 +11,7 @@ target 'Tests', :exclusive => true do
 
   pod "JWTDecode"
 
-  pod 'Specta', '~> 0.2.1', :inhibit_warnings => true
+  pod 'Specta', '~> 0.4.0', :inhibit_warnings => true
   pod 'Expecta', :inhibit_warnings => true
-  pod 'OCMockito', '~> 1.3'
+  pod 'OCMockito', '~> 1.4'
 end

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TouchIDAuth"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A library for passwordless authentication using TouchID & JWT"
   s.description      = <<-DESC
 iOS library that implements a passwordless flow using TouchID & JWT.
@@ -28,7 +28,6 @@ It provides callbacks to implement the interaction with your backend in order to
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Security', 'LocalAuthentication'
-  s.dependency 'SimpleKeychain', '~> 0.2'
+  s.dependency 'SimpleKeychain', '~> 0.3'
   s.dependency 'libextobjc', '~> 0.4'
-  s.dependency 'ObjectiveSugar', '~> 1.1'
 end

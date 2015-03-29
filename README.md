@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/TouchIDAuth.svg?style=flat)](http://cocoadocs.org/docsets/TouchIDAuth)
 [![License](https://img.shields.io/cocoapods/l/TouchIDAuth.svg?style=flat)](http://cocoadocs.org/docsets/TouchIDAuth)
 [![Platform](https://img.shields.io/cocoapods/p/TouchIDAuth.svg?style=flat)](http://cocoadocs.org/docsets/TouchIDAuth)
+[![Dependency Status](https://www.versioneye.com/user/projects/5517548330e96dca3c000002/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5517548330e96dca3c000002)
 
 TouchIDAuth provides a default implementation for a passwordless login flow using TouchID and JWT.
 
