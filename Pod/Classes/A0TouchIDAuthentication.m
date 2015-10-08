@@ -145,7 +145,6 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
     A0JWTBuilder *builder = [[A0JWTBuilder alloc] init];
     SecKeyRef keyRef = [self.keychain keyRefOfRSAKeyWithTag:[self privateKeyTag]];
     NSString *jwt = [[[builder setJWTPayload:claims] signWithMethod:A0JWTSignMethodRS256 andKeyOrSecret:(__bridge id)(keyRef)] jwt];
-    CFRelease(keyRef);
 
     if (self.authenticate) {
         self.authenticate(jwt, errorBlock);
