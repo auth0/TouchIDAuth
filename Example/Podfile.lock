@@ -1,27 +1,27 @@
 PODS:
-  - AFNetworking (2.5.2):
-    - AFNetworking/NSURLConnection (= 2.5.2)
-    - AFNetworking/NSURLSession (= 2.5.2)
-    - AFNetworking/Reachability (= 2.5.2)
-    - AFNetworking/Security (= 2.5.2)
-    - AFNetworking/Serialization (= 2.5.2)
-    - AFNetworking/UIKit (= 2.5.2)
-  - AFNetworking/NSURLConnection (2.5.2):
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.2):
+  - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.2)
-  - AFNetworking/Security (2.5.2)
-  - AFNetworking/Serialization (2.5.2)
-  - AFNetworking/UIKit (2.5.2):
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Expecta (0.3.2)
-  - JWTDecode (0.2.1)
+  - Expecta (1.0.3)
+  - JWTDecode (0.2.2)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
     - libextobjc/EXTConcreteProtocol (= 0.4.1)
@@ -58,12 +58,12 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
   - MBProgressHUD (0.9.1)
-  - OCHamcrest (4.1.1)
+  - OCHamcrest (4.2.0)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
-  - SimpleKeychain (0.3.0)
+  - SimpleKeychain (0.5.0)
   - Specta (0.4.0)
-  - TouchIDAuth (0.1.1):
+  - TouchIDAuth (0.1.2):
     - libextobjc (~> 0.4)
     - SimpleKeychain (~> 0.3)
 
@@ -81,15 +81,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
-  Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
-  JWTDecode: 72e3393caf14dc762eba51d29f15bd86f608aba3
-  libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
-  MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
-  OCHamcrest: af1c7c5ea345de69ea6c9c2958f65f3044e5c420
-  OCMockito: 991936bb775cc4c27f063d38f5e17b9161fbd21c
-  SimpleKeychain: 4758625a53ca89cfae98b4aca8c550d1193292f8
-  Specta: 1df326d6ec48603c77f507a0ab1f89ad2df1c582
-  TouchIDAuth: f63596baf1c23d85211ab7a3b4bea794d73f3e36
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  JWTDecode: c193d229af74dd72121515c976f930ccbed96a2a
+  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  OCHamcrest: c14c0b3f4c4e99363e5b87d97bae38c4438b6d5d
+  OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
+  SimpleKeychain: ae04c7ca6a960a146081010b412cf0ba2ecb10fe
+  Specta: a353759f073ffcc0a365b782fe4aaeac064c03c6
+  TouchIDAuth: 2e54bba603ad518aefa02fc81fed9a29de0eab32
 
-COCOAPODS: 0.36.1
+COCOAPODS: 0.38.2

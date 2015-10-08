@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TouchIDAuth"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "A library for passwordless authentication using TouchID & JWT"
   s.description      = <<-DESC
 iOS library that implements a passwordless flow using TouchID & JWT.
