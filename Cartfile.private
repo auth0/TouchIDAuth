@@ -1,0 +1,3 @@
+github "jdg/MBProgressHUD" "master"
+github "AFNetworking/AFNetworking" "3.0.0-beta.1"
+github "auth0/JWTDecode.swift" ~> 0.2
