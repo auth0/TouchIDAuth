@@ -24,7 +24,6 @@
 
 #import <TouchIDAuth/A0TouchIDAuthentication.h>
 #import <AFNetworking/AFNetworking.h>
-#import <libextobjc/EXTScope.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
 #import "A0RegisterViewController.h"
@@ -51,12 +50,10 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [self.authentication reset];
-    @weakify(self);
+    __weak A0ViewController *weakSelf = self;
     self.authentication.registerPublicKey = ^(NSData *pubKey, A0RegisterCompletionBlock completionBlock, A0ErrorBlock errorBlock) {
-        @strongify(self);
-        self.completionBlock = ^(NSString *email) {
-            @strongify(self);
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        weakSelf.completionBlock = ^(NSString *email) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
             hud.labelText = NSLocalizedString(@"Registering Public Key...", nil);
             NSDictionary *params = @{
                                      @"user": email,
@@ -66,33 +63,31 @@
                 completionBlock();
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 errorBlock(error);
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
             }];
         };
-        [self performSegueWithIdentifier:@"StartRegister" sender:self];
+        [weakSelf performSegueWithIdentifier:@"StartRegister" sender:weakSelf];
     };
 
     self.authentication.authenticate = ^(NSString *jwt, A0ErrorBlock errorBlock) {
-        @strongify(self);
         NSLog(@"JWT: %@", jwt);
         NSDictionary *params = @{
                                  @"jwt": jwt,
                                  };
-        MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+        MBProgressHUD *hud = [MBProgressHUD HUDForView:weakSelf.view];
         hud.labelText = NSLocalizedString(@"Login in with JWT...", nil);
         [manager POST:@"/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Logged in!!!");
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self performSegueWithIdentifier:@"Authenticated" sender:self];
+            [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+            [weakSelf performSegueWithIdentifier:@"Authenticated" sender:weakSelf];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             errorBlock(error);
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         }];
     };
     self.authentication.onError = ^(NSError *error) {
-        @strongify(self);
         NSLog(@"ERROR %@", error);
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
     };
 }
 

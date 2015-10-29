@@ -24,7 +24,6 @@
 
 #import "NSData+A0JWTSafeBase64.h"
 
-#import <libextobjc/EXTScope.h>
 #import <SimpleKeychain/A0SimpleKeychain+KeyPair.h>
 #import "A0RSAKeyExporter.h"
 #import "A0JWTBuilder.h"
@@ -56,7 +55,7 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
     if ([self isTouchIDAuthenticationAvailable]) {
         [self performTouchIDChallenge];
     } else {
-        [self safeFailWithError:[self touchIDNotAvailableError]];
+        [self safeFailWithError:[A0TouchIDAuthentication touchIDNotAvailableError]];
     }
 }
 
@@ -72,13 +71,12 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
 #pragma mark - TouchID step
 
 - (void)performTouchIDChallenge {
-    @weakify(self);
+    __weak A0TouchIDAuthentication *weakSelf = self;
     [self.touchID validateWithCompletion:^(BOOL success, NSError *error) {
-        @strongify(self);
         if (success) {
-            [self checkKeyPair];
+            [weakSelf checkKeyPair];
         } else {
-            [self safeFailWithError:[self touchIDFailedWithError:error]];
+            [weakSelf safeFailWithError:[A0TouchIDAuthentication touchIDFailedWithError:error]];
         }
     } localizedReason:self.localizedTouchIDMessage];
 }
@@ -86,14 +84,12 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
 #pragma mark - Key Pair generation step
 
 - (void)checkKeyPair {
-    @weakify(self);
+    __weak A0TouchIDAuthentication *weakSelf = self;
     A0RegisterCompletionBlock completionBlock = ^{
-        @strongify(self);
-        [self generateJWT];
+        [weakSelf generateJWT];
     };
     A0ErrorBlock errorBlock = ^(NSError *error) {
-        @strongify(self);
-        [self safeFailWithError:error];
+        [weakSelf safeFailWithError:error];
     };
 
     NSString *publicTag = [self publicKeyTag];
@@ -123,10 +119,9 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
 #pragma mark - JWT step
 
 - (void)generateJWT {
-    @weakify(self);
+    __weak A0TouchIDAuthentication *weakSelf = self;
     A0ErrorBlock errorBlock = ^(NSError *error) {
-        @strongify(self);
-        [self safeFailWithError:error];
+        [weakSelf safeFailWithError:error];
     };
 
     NSString *publicTag = [self publicKeyTag];
@@ -153,7 +148,7 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
 
 #pragma mark - Error methods
 
-- (NSError *)touchIDNotAvailableError {
++ (NSError *)touchIDNotAvailableError {
     NSError *error = [[NSError alloc] initWithDomain:@"com.auth0.TouchIDAuthentication"
                                                 code:A0TouchIDAuthenticationErrorTouchIDNotAvailable
                                             userInfo:@{
@@ -162,7 +157,7 @@ NSString * const A0TouchIDAuthenticationErrorKey = @"A0TouchIDAuthenticationErro
     return error;
 }
 
-- (NSError *)touchIDFailedWithError:(NSError *)failError {
++ (NSError *)touchIDFailedWithError:(NSError *)failError {
     NSMutableDictionary *userInfo = [@{
                                       NSLocalizedDescriptionKey: NSLocalizedString(@"Failed to authenticate using TouchID", @"User  failed to authenticate"),
                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"TouchID verification failed. Please try again.", @"TouchID verification failed"),

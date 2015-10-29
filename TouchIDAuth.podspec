@@ -29,5 +29,4 @@ It provides callbacks to implement the interaction with your backend in order to
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Security', 'LocalAuthentication'
   s.dependency 'SimpleKeychain', '~> 0.3'
-  s.dependency 'libextobjc', '~> 0.4'
 end
