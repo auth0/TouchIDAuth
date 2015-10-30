@@ -1,6 +1,6 @@
 // A0TouchIDAuth.h
 //
-// Copyright (c) 2014 Auth0 (http://auth0.com)
+// Copyright (c) 2015 Auth0 (http://auth0.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,8 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^A0RegisterCompletionBlock)();
 typedef void(^A0ErrorBlock)(NSError *error);
@@ -62,7 +64,7 @@ FOUNDATION_EXPORT NSString * const A0TouchIDAuthenticationErrorKey;
 /**
  *  Block to return the paylod for the JWT to be signed by the device. It will be called each time a JWT needs to be generated and signed. By default `A0TouchIDAuth` will include `iat`, `exp` (30 sec) and `sub` (Public Key fingerprint) claims but you can override them or add more entries to the payload.
  */
-@property (copy, nonatomic) NSDictionary *(^jwtPayload)();
+@property (copy, nonatomic) NSDictionary<NSString *, id> *(^jwtPayload)();
 
 /**
  *  Block called with the signed JWT to authenticate against an API ednpoint.
@@ -77,7 +79,7 @@ FOUNDATION_EXPORT NSString * const A0TouchIDAuthenticationErrorKey;
 /**
  * Localized message displayed in TouchID prompt.
  */
-@property (copy, nonatomic) NSString *localizedTouchIDMessage;
+@property (copy, nullable, nonatomic) NSString *localizedTouchIDMessage;
 
 /**
  *  Starts the TouchID authentication flow. It will fail automatically if `isTouchIDAuthenticationAvailable` returns `NO`.
@@ -97,3 +99,5 @@ FOUNDATION_EXPORT NSString * const A0TouchIDAuthenticationErrorKey;
 - (void)reset;
 
 @end
+
+NS_ASSUME_NONNULL_END

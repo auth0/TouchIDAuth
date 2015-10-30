@@ -30,18 +30,20 @@
 		5F4EBCD71BE2C93E00252D33 /* A0RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4EBCD51BE2C93E00252D33 /* A0RegisterViewController.m */; };
 		5F4EBCD81BE2C93E00252D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F4EBCD61BE2C93E00252D33 /* Main.storyboard */; };
 		5F4EBCDB1BE2C9F900252D33 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4EBCD91BE2C9F900252D33 /* AFNetworking.framework */; };
-		5F4EBCE61BE2CAF400252D33 /* TouchIDAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4EBC8B1BE2AAEC00252D33 /* TouchIDAuth.framework */; };
+		5F77FA371BE3AB4800DBDE69 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F77FA321BE3AB0A00DBDE69 /* Nimble.framework */; };
+		5F77FA381BE3AB4800DBDE69 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F77FA341BE3AB0A00DBDE69 /* Quick.framework */; };
+		5F77FA3B1BE3ADE700DBDE69 /* A0RSAKeyExporterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77FA3A1BE3ADE700DBDE69 /* A0RSAKeyExporterSpec.swift */; };
+		5F77FA3E1BE3B22700DBDE69 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F77FA321BE3AB0A00DBDE69 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F77FA3F1BE3B22700DBDE69 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F77FA341BE3AB0A00DBDE69 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F77FA421BE3C30B00DBDE69 /* A0JWTSafeBase64Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77FA411BE3C30B00DBDE69 /* A0JWTSafeBase64Spec.swift */; };
+		5F77FA431BE3C98700DBDE69 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4EBCAA1BE2AC8C00252D33 /* Security.framework */; };
+		5F77FA451BE3DC6900DBDE69 /* A0TouchIDAuthenticationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F77FA441BE3DC6900DBDE69 /* A0TouchIDAuthenticationSpec.swift */; };
+		5F77FA471BE3EAC200DBDE69 /* JWTDecode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F77FA461BE3EAC200DBDE69 /* JWTDecode.framework */; };
+		5F77FA481BE3EACA00DBDE69 /* JWTDecode.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F77FA461BE3EAC200DBDE69 /* JWTDecode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		5F4EBCCE1BE2C5E100252D33 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F4EBC821BE2AAEC00252D33 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F4EBC8A1BE2AAEC00252D33;
-			remoteInfo = "TouchIDAuth-iOS";
-		};
-		5F4EBCE71BE2CAF400252D33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F4EBC821BE2AAEC00252D33 /* Project object */;
 			proxyType = 1;
@@ -56,6 +58,21 @@
 			remoteInfo = MyTouchID;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5F77FA3D1BE3B21C00DBDE69 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F77FA481BE3EACA00DBDE69 /* JWTDecode.framework in CopyFiles */,
+				5F77FA3E1BE3B22700DBDE69 /* Nimble.framework in CopyFiles */,
+				5F77FA3F1BE3B22700DBDE69 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5F4EBC8B1BE2AAEC00252D33 /* TouchIDAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TouchIDAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +110,15 @@
 		5F4EBCDA1BE2C9F900252D33 /* AFNetworking.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = AFNetworking.framework.dSYM; path = Carthage/Build/iOS/AFNetworking.framework.dSYM; sourceTree = "<group>"; };
 		5F4EBCE11BE2CAF400252D33 /* TouchIDAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchIDAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4EBCE51BE2CAF400252D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F77FA321BE3AB0A00DBDE69 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		5F77FA331BE3AB0A00DBDE69 /* Nimble.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Nimble.framework.dSYM; path = Carthage/Build/iOS/Nimble.framework.dSYM; sourceTree = "<group>"; };
+		5F77FA341BE3AB0A00DBDE69 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		5F77FA351BE3AB0A00DBDE69 /* Quick.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Quick.framework.dSYM; path = Carthage/Build/iOS/Quick.framework.dSYM; sourceTree = "<group>"; };
+		5F77FA391BE3ADE600DBDE69 /* TouchIDAuthTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TouchIDAuthTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		5F77FA3A1BE3ADE700DBDE69 /* A0RSAKeyExporterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A0RSAKeyExporterSpec.swift; sourceTree = "<group>"; };
+		5F77FA411BE3C30B00DBDE69 /* A0JWTSafeBase64Spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A0JWTSafeBase64Spec.swift; sourceTree = "<group>"; };
+		5F77FA441BE3DC6900DBDE69 /* A0TouchIDAuthenticationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A0TouchIDAuthenticationSpec.swift; sourceTree = "<group>"; };
+		5F77FA461BE3EAC200DBDE69 /* JWTDecode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWTDecode.framework; path = Carthage/Build/iOS/JWTDecode.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +145,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F4EBCE61BE2CAF400252D33 /* TouchIDAuth.framework in Frameworks */,
+				5F77FA471BE3EAC200DBDE69 /* JWTDecode.framework in Frameworks */,
+				5F77FA431BE3C98700DBDE69 /* Security.framework in Frameworks */,
+				5F77FA371BE3AB4800DBDE69 /* Nimble.framework in Frameworks */,
+				5F77FA381BE3AB4800DBDE69 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +198,11 @@
 		5F4EBCAE1BE2AC9500252D33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F77FA461BE3EAC200DBDE69 /* JWTDecode.framework */,
+				5F77FA321BE3AB0A00DBDE69 /* Nimble.framework */,
+				5F77FA331BE3AB0A00DBDE69 /* Nimble.framework.dSYM */,
+				5F77FA341BE3AB0A00DBDE69 /* Quick.framework */,
+				5F77FA351BE3AB0A00DBDE69 /* Quick.framework.dSYM */,
 				5F4EBCD91BE2C9F900252D33 /* AFNetworking.framework */,
 				5F4EBCDA1BE2C9F900252D33 /* AFNetworking.framework.dSYM */,
 				5F4EBCD01BE2C86F00252D33 /* MBProgressHUD.framework */,
@@ -211,6 +245,10 @@
 			isa = PBXGroup;
 			children = (
 				5F4EBCE51BE2CAF400252D33 /* Info.plist */,
+				5F77FA3A1BE3ADE700DBDE69 /* A0RSAKeyExporterSpec.swift */,
+				5F77FA391BE3ADE600DBDE69 /* TouchIDAuthTests-Bridging-Header.h */,
+				5F77FA411BE3C30B00DBDE69 /* A0JWTSafeBase64Spec.swift */,
+				5F77FA441BE3DC6900DBDE69 /* A0TouchIDAuthenticationSpec.swift */,
 			);
 			path = TouchIDAuthTests;
 			sourceTree = "<group>";
@@ -259,6 +297,7 @@
 				5F4EBCB31BE2C5D900252D33 /* Sources */,
 				5F4EBCB41BE2C5D900252D33 /* Frameworks */,
 				5F4EBCB51BE2C5D900252D33 /* Resources */,
+				5F77FA3C1BE3B11F00DBDE69 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -277,11 +316,11 @@
 				5F4EBCDD1BE2CAF400252D33 /* Sources */,
 				5F4EBCDE1BE2CAF400252D33 /* Frameworks */,
 				5F4EBCDF1BE2CAF400252D33 /* Resources */,
+				5F77FA3D1BE3B21C00DBDE69 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5F4EBCE81BE2CAF400252D33 /* PBXTargetDependency */,
 				5F4EBCED1BE2CAF900252D33 /* PBXTargetDependency */,
 			);
 			name = TouchIDAuthTests;
@@ -357,6 +396,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F77FA3C1BE3B11F00DBDE69 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/AFNetworking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SimpleKeychain.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5F4EBC861BE2AAEC00252D33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -385,6 +444,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F77FA3B1BE3ADE700DBDE69 /* A0RSAKeyExporterSpec.swift in Sources */,
+				5F77FA421BE3C30B00DBDE69 /* A0JWTSafeBase64Spec.swift in Sources */,
+				5F77FA451BE3DC6900DBDE69 /* A0TouchIDAuthenticationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,11 +457,6 @@
 			isa = PBXTargetDependency;
 			target = 5F4EBC8A1BE2AAEC00252D33 /* TouchIDAuth-iOS */;
 			targetProxy = 5F4EBCCE1BE2C5E100252D33 /* PBXContainerItemProxy */;
-		};
-		5F4EBCE81BE2CAF400252D33 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F4EBC8A1BE2AAEC00252D33 /* TouchIDAuth-iOS */;
-			targetProxy = 5F4EBCE71BE2CAF400252D33 /* PBXContainerItemProxy */;
 		};
 		5F4EBCED1BE2CAF900252D33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -583,10 +640,17 @@
 		5F4EBCEA1BE2CAF400252D33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TouchIDAuthTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.auth0.TouchIDAuthTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TouchIDAuthTests/TouchIDAuthTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyTouchID.app/MyTouchID";
 			};
 			name = Debug;
@@ -594,10 +658,16 @@
 		5F4EBCEB1BE2CAF400252D33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TouchIDAuthTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.auth0.TouchIDAuthTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TouchIDAuthTests/TouchIDAuthTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyTouchID.app/MyTouchID";
 			};
 			name = Release;
@@ -630,6 +700,7 @@
 				5F4EBCCD1BE2C5D900252D33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F4EBCE91BE2CAF400252D33 /* Build configuration list for PBXNativeTarget "TouchIDAuthTests" */ = {
 			isa = XCConfigurationList;
@@ -638,6 +709,7 @@
 				5F4EBCEB1BE2CAF400252D33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

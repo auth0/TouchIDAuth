@@ -9,7 +9,7 @@
         <!--Welcome to TouchID Authentication!-->
         <scene sceneID="dOa-hy-KNt">
             <objects>
-                <viewController id="FNe-w7-iBm" customClass="A0ViewController" sceneMemberID="viewController">
+                <viewController id="FNe-w7-iBm" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oeu-rk-ukM"/>
                         <viewControllerLayoutGuide type="bottom" id="wsN-zV-jjQ"/>
