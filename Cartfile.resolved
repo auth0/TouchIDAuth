@@ -1,0 +1,6 @@
+github "AFNetworking/AFNetworking" "3.0.0-beta.1"
+github "auth0/JWTDecode.swift" "1.0.0"
+github "jdg/MBProgressHUD" "f089d2a035df0044714d6a80f614ba35f29c9baa"
+github "Quick/Nimble" "v2.0.0"
+github "Quick/Quick" "v0.6.0"
+github "auth0/SimpleKeychain" "0.6.1"

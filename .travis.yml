@@ -1,18 +1,21 @@
+reference: http://www.objc.io/issue-6/travis-ci.html
 language: objective-c
-
-podfile: Example/Podfile
-osx_image: xcode7
-
-before_install:
-- gem install cocoapods xcpretty --no-ri --no-rdoc
-
+osx_image: xcode7.1
+before_install: true
+install: true
 script:
-- set -o pipefail && xcodebuild -workspace Example/TouchIDAuth.xcworkspace -scheme TouchID -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO clean test | xcpretty -c
-
+- script/cibuild
 branches:
   only:
   - master
-
 notifications:
   slack:
     secure: FYTAD2dSWOSaIV9f2c+3RmX5ib+aJuTioNAq+RGK3S9dbmBgRDuPainIbtZX5uDBWkTHDaVe6ydELB+HLkt8zccGjU9Rc8n1HQqn86QjGQXFxnCILMrUQu0utzHgXGy6XDCVkO6pCGHPw0GCes2KUZ7JyohJz2tx1aOLxI0DC4E=
+env:
+  global:
+  - secure: Lije1gxftTmnm/2XVjA5nYKbfhkH/kgl4T0VfxEtDeajn/grvMJvmk6NEgKI/sEqu9C7GndY9rlxWGZ3u9U2eKJkUt/9m9BLBMcGDzaqoSAw8gZHiJVr6TiVFTKrqjCEKsobwxjhQgVo8J664fbRDRN65RwNoAjFqSyv2zTtxDo=
+  - secure: B4hN2R9S/9dynevb+z8PE8KHebjcq8cwAnOwQQxfYZhgzY2s6aUbw8bPP5myE0qgU9k1BVLiA/MbVs5WDs0yjv957m2093OEUCFFk7H8Z+hN8+JlnFtcBQR2yxRpQ+ICWjfzhGtf2EyrZV56w67HOMQO11OPeuH1CV7iXS2dxVs=
+  matrix:
+  - SCHEME="TouchIDAuth-iOS" IOS_DESTINATION_VERSION="9.1" CARTHAGE_BUILD_PLATFORM="iOS"
+  #- SCHEME="TouchIDAuth-iOS" IOS_DESTINATION_VERSION="9.0" CARTHAGE_BUILD_PLATFORM="iOS"
+  #- SCHEME="TouchIDAuth-iOS" IOS_DESTINATION_VERSION="8.4" CARTHAGE_BUILD_PLATFORM="iOS"

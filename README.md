@@ -35,13 +35,13 @@ it, simply add the following line to your Podfile:
 ## Running Example app
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-And then in [A0ViewController](https://github.com/auth0/TouchIDAuth/blob/master/Example/TouchIDAuth/A0ViewController.m#L32) add your IP address or hostname for the mock server URL:
+And then in [A0ViewController](https://github.com/auth0/TouchIDAuth/blob/master/MyTouchID/ViewController.m#L32) add your IP address or hostname for the mock server URL:
 
 ```objc
 #define kBaseURL @"http://mymac.local:3000"
 ```
 
-To run the mock server, go to the folder [TouchIDAuthServer](https://github.com/auth0/TouchIDAuth/tree/master/Example/TouchIDAuthServer) and run the following commands:
+To run the mock server, go to the folder [TouchIDAuthServer](https://github.com/auth0/TouchIDAuth/tree/master/TouchIDAuthServer) and run the following commands:
 ```bash
 npm install
 node app.js

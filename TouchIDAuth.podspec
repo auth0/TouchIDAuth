@@ -24,9 +24,8 @@ It provides callbacks to implement the interaction with your backend in order to
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes'
+  s.source_files = 'TouchIDAuth/*.{h,m}'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Security', 'LocalAuthentication'
   s.dependency 'SimpleKeychain', '~> 0.3'
 end

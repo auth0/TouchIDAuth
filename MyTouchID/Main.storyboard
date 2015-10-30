@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TEp-Cy-cId">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Welcome to TouchID Authentication!-->
+        <scene sceneID="dOa-hy-KNt">
+            <objects>
+                <viewController id="FNe-w7-iBm" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Oeu-rk-ukM"/>
+                        <viewControllerLayoutGuide type="bottom" id="wsN-zV-jjQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZgV-sM-ta7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-horizontal-blue" translatesAutoresizingMaskIntoConstraints="NO" id="8C4-rT-iOS">
+                                <rect key="frame" x="20" y="64" width="560" height="135"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="SjS-3I-PY6"/>
+                                    <constraint firstAttribute="height" constant="135" id="r6z-AD-sRJ"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="SjS-3I-PY6"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ty7-IL-U0i">
+                                <rect key="frame" x="20" y="207" width="560" height="393"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touchid" translatesAutoresizingMaskIntoConstraints="NO" id="p9v-s3-h4d">
+                                        <rect key="frame" x="209" y="125" width="142" height="142"/>
+                                        <animations/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tap the icon to start TouchID authentication" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="250" translatesAutoresizingMaskIntoConstraints="NO" id="pWw-Su-MND">
+                                        <rect key="frame" x="176" y="64" width="210" height="41"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="p9v-s3-h4d" secondAttribute="centerX" id="RzF-cF-uJg"/>
+                                    <constraint firstAttribute="centerY" secondItem="p9v-s3-h4d" secondAttribute="centerY" id="eDD-sd-YOV"/>
+                                    <constraint firstAttribute="centerX" secondItem="pWw-Su-MND" secondAttribute="centerX" id="fOB-TL-gd4"/>
+                                    <constraint firstItem="p9v-s3-h4d" firstAttribute="top" secondItem="pWw-Su-MND" secondAttribute="bottom" constant="20" id="lun-Ml-ogI"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Mxk-WQ-0YW" appends="YES" id="FOg-y4-ZZv"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Ty7-IL-U0i" secondAttribute="centerY" id="2nn-IU-PBk"/>
+                            <constraint firstItem="8C4-rT-iOS" firstAttribute="leading" secondItem="ZgV-sM-ta7" secondAttribute="leadingMargin" id="7ib-Qx-6vx"/>
+                            <constraint firstItem="Ty7-IL-U0i" firstAttribute="top" secondItem="8C4-rT-iOS" secondAttribute="bottom" constant="8" id="ESO-qQ-dEQ"/>
+                            <constraint firstItem="Ty7-IL-U0i" firstAttribute="leading" secondItem="ZgV-sM-ta7" secondAttribute="leadingMargin" id="Ogw-1Y-ihx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ty7-IL-U0i" secondAttribute="trailing" id="SXs-br-RDc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8C4-rT-iOS" secondAttribute="trailing" id="SmV-zW-muS"/>
+                            <constraint firstItem="8C4-rT-iOS" firstAttribute="top" secondItem="Oeu-rk-ukM" secondAttribute="bottom" id="uYq-ni-eGk"/>
+                            <constraint firstItem="wsN-zV-jjQ" firstAttribute="top" secondItem="Ty7-IL-U0i" secondAttribute="bottom" id="zqt-Bt-pdm"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2nn-IU-PBk"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Welcome to TouchID Authentication!" id="yAF-yx-8HL">
+                        <barButtonItem key="backBarButtonItem" title="Logout" id="2mH-2V-Ce7"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="nHT-rS-NBV" kind="show" identifier="StartRegister" id="IBu-AD-Kwo"/>
+                        <segue destination="7zM-J3-VuN" kind="show" identifier="Authenticated" id="BBR-Ev-mjn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4Q-ft-RR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Mxk-WQ-0YW">
+                    <connections>
+                        <action selector="startAuthentication:" destination="FNe-w7-iBm" id="Rm1-yc-LCH"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1460.5" y="421.5"/>
+        </scene>
+        <!--Logged In-->
+        <scene sceneID="UUO-VP-oDs">
+            <objects>
+                <viewController id="7zM-J3-VuN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HhI-EM-GB8"/>
+                        <viewControllerLayoutGuide type="bottom" id="saf-e1-p3J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MQe-en-Ayf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qcs-TI-Exa">
+                                <rect key="frame" x="20" y="207" width="560" height="393"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touchid" translatesAutoresizingMaskIntoConstraints="NO" id="0T1-t1-mJA">
+                                        <rect key="frame" x="209" y="125" width="142" height="142"/>
+                                        <animations/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations, you've successfully authenticated with TouchID!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="dLj-Q8-awB">
+                                        <rect key="frame" x="138" y="64" width="284" height="41"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="0T1-t1-mJA" secondAttribute="centerY" id="V5k-1Q-hqI"/>
+                                    <constraint firstAttribute="centerX" secondItem="0T1-t1-mJA" secondAttribute="centerX" id="csf-xM-aq9"/>
+                                    <constraint firstItem="0T1-t1-mJA" firstAttribute="top" secondItem="dLj-Q8-awB" secondAttribute="bottom" constant="20" id="sKM-QC-sPC"/>
+                                    <constraint firstAttribute="centerX" secondItem="dLj-Q8-awB" secondAttribute="centerX" id="yqR-Mh-XNr"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-horizontal-blue" translatesAutoresizingMaskIntoConstraints="NO" id="hc6-JO-6hy">
+                                <rect key="frame" x="205" y="64" width="191" height="135"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="jls-27-1Pe"/>
+                                    <constraint firstAttribute="height" constant="135" id="xs8-3w-7ww"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="jls-27-1Pe"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qcs-TI-Exa" firstAttribute="top" secondItem="hc6-JO-6hy" secondAttribute="bottom" constant="8" id="3US-aa-Yhc"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Qcs-TI-Exa" secondAttribute="bottom" id="EvO-o0-ucy"/>
+                            <constraint firstItem="Qcs-TI-Exa" firstAttribute="leading" secondItem="MQe-en-Ayf" secondAttribute="leadingMargin" id="goW-0w-2AK"/>
+                            <constraint firstAttribute="centerX" secondItem="hc6-JO-6hy" secondAttribute="centerX" id="iWp-JH-xgI"/>
+                            <constraint firstItem="Qcs-TI-Exa" firstAttribute="trailing" secondItem="MQe-en-Ayf" secondAttribute="trailingMargin" id="ib6-RO-14c"/>
+                            <constraint firstItem="hc6-JO-6hy" firstAttribute="top" secondItem="HhI-EM-GB8" secondAttribute="bottom" id="uv6-9w-kNK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Logged In" id="Tap-f1-jI8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="36e-NU-LnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="1214"/>
+        </scene>
+        <!--Register your email-->
+        <scene sceneID="OsF-aF-lj3">
+            <objects>
+                <viewController id="nHT-rS-NBV" customClass="A0RegisterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a0N-is-ydm"/>
+                        <viewControllerLayoutGuide type="bottom" id="kMe-Ab-2dt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AK6-Ya-5Gs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KhE-FK-OKc">
+                                <rect key="frame" x="20" y="142" width="478" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XM-t2-3sk">
+                                <rect key="frame" x="518" y="141" width="62" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="0.12156862745098039" green="0.14509803921568629" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerEmail:" destination="nHT-rS-NBV" eventType="touchUpInside" id="RAf-O9-HvW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5XM-t2-3sk" firstAttribute="leading" secondItem="KhE-FK-OKc" secondAttribute="trailing" constant="20" id="967-MG-PJS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5XM-t2-3sk" secondAttribute="trailing" id="FCo-zi-CcC"/>
+                            <constraint firstItem="KhE-FK-OKc" firstAttribute="baseline" secondItem="5XM-t2-3sk" secondAttribute="baseline" id="Ndn-Ci-dkf"/>
+                            <constraint firstItem="KhE-FK-OKc" firstAttribute="leading" secondItem="AK6-Ya-5Gs" secondAttribute="leadingMargin" id="pFo-Ek-3yN"/>
+                            <constraint firstItem="KhE-FK-OKc" firstAttribute="top" secondItem="a0N-is-ydm" secondAttribute="bottom" constant="78" id="pFt-gf-82d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Register your email" id="yLF-9s-keN"/>
+                    <connections>
+                        <outlet property="emailField" destination="KhE-FK-OKc" id="Lay-bN-aI3"/>
+                        <segue destination="dzH-tD-iKR" kind="unwind" identifier="RegisterEmailUser" unwindAction="userRegistered:" id="Fpb-Ha-O8t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u0i-TX-jGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="dzH-tD-iKR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2123" y="421"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CqI-0k-21X">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TEp-Cy-cId" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t4C-Y6-GC4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FNe-w7-iBm" kind="relationship" relationship="rootViewController" id="QR6-0C-Su9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mS8-Fm-WHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="618" y="421"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo-horizontal-blue" width="191" height="70"/>
+        <image name="touchid" width="142" height="142"/>
+    </resources>
+</document>
