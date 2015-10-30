@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/TouchIDAuth.svg?style=flat)](http://cocoadocs.org/docsets/TouchIDAuth)
 [![License](https://img.shields.io/cocoapods/l/TouchIDAuth.svg?style=flat)](http://cocoadocs.org/docsets/TouchIDAuth)
 [![Platform](https://img.shields.io/cocoapods/p/TouchIDAuth.svg?style=flat)](http://cocoadocs.org/docsets/TouchIDAuth)
-[![Dependency Status](https://www.versioneye.com/user/projects/5517548330e96dca3c000002/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5517548330e96dca3c000002)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 TouchIDAuth provides a default implementation for a passwordless login flow using TouchID and JWT.
 
@@ -27,10 +27,21 @@ The library requires iOS 8+ and a device with TouchID.
 
 ## Installation
 
+### CocoaPods
+
 TouchIDAuth is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
     pod "TouchIDAuth"
+
+### Carthage
+
+In your Cartfile add the following
+
+```
+github "auth0/TouchIDAuth"
+```
+ 
 
 ## Running Example app
 
