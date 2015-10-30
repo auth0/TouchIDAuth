@@ -1,6 +1,7 @@
+version = `agvtool mvers -terse1`.strip
 Pod::Spec.new do |s|
   s.name             = "TouchIDAuth"
-  s.version          = "0.1.2"
+  s.version          = version
   s.summary          = "A library for passwordless authentication using TouchID & JWT"
   s.description      = <<-DESC
 iOS library that implements a passwordless flow using TouchID & JWT.
